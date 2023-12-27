@@ -7,7 +7,9 @@ import router from "./router";
 import { store } from "../store";
 import { ReactFlowProvider } from "reactflow";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+let main: any = document.getElementById("root");
+
+ReactDOM.createRoot(main).render(
   // <React.StrictMode>
   <Provider store={store}>
     <ReactFlowProvider>

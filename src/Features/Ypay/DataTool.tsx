@@ -2,8 +2,6 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { BsArrowRight, BsPlusLg, BsStar } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import profil from "../../assets/images/profil.jpeg";
-import Chart from "./Chart";
-import Chart2 from "./Chart2";
 
 type Props = {
   propStyle: any;
