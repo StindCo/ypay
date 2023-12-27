@@ -1,0 +1,56 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "naissances": [
+    {
+      "numnouvne": "crvs-1000",
+      "nomnouvne": "Louis",
+      "postnouvne": "Louis",
+      "prennouvne": "Louis",
+      "genrnouvne": "M",
+      "datnainouvne": "2023-10-21",
+      "linaisnouvne": "Kinshasa",
+      "numeregs": "012",
+      "nummer": "Mi456",
+      "numper": "Jean456",
+      "iddeclat": "102",
+      "id": 1
+    },
+    {
+      "numnouvne": "045654656",
+      "nomnouvne": "hkjhk",
+      "postnouvne": "hjkhjhk",
+      "prennouvne": "HSKjhk",
+      "genrnouvne": "M",
+      "datnainouvne": "2023-10-21",
+      "linaisnouvne": "Kinshasa",
+      "numeregs": "13213",
+      "nummer": "jskls",
+      "numper": "skjl",
+      "iddeclat": "jkl",
+      "id": 2
+    },
+    {
+      "numnouvne": "sjskjsk",
+      "nomnouvne": "sjks",
+      "postnouvne": "sjks",
+      "prennouvne": "sjks",
+      "genrnouvne": "sjks",
+      "datnainouvne": "2023-10-21",
+      "linaisnouvne": "slksllm",
+      "numeregs": "sklsmk",
+      "nummer": "ksklms",
+      "numper": "sslmks",
+      "iddeclat": "klsm",
+      "id": 3
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
