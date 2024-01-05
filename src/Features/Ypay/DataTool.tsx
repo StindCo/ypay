@@ -12,7 +12,14 @@ export default function DataTool() {
   return (
     <>
       <div className="w-full">
-        {/* <div className="w-full flex flex-row-reverse items-center justify-between mt-3 mb-16">
+        <div className="w-full flex flex-row items-center justify-between mt-3 mb-10">
+        <div className="dropdown dropdown-end">
+            <div
+              className="flex items-center space-x-3 cursor-pointer"
+            >
+              <span className="bg-slate-200 p-3 rounded-lg"> {`EURO () -> USD ($) : 1.11`}</span>
+            </div>
+          </div>
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
@@ -39,30 +46,12 @@ export default function DataTool() {
           </div>
         </div>
         <div className=" w-full  rounded-lg">
-
           <div className="flex overflow-x-scroll pb-10 no-scrollBar">
-            <div className="grid grid-cols-5 gap-4">
+            <div className="w-full grid grid-cols-3 gap-2">
               <div className=" px-3">
                 <div className="w-full h-40 cursor-pointer flex flex-col justify-end  text-right  items-end  max-w-xs overflow-hidden rounded-lg shadow-md bg-green-600 hover:shadow-xl transition-shadow duration-300 ease-in-out">
                   <h1 className="text-white font-[PoppinsBold] text-md p-8">
                     cas des naissances
-                  </h1>
-                </div>
-              </div>
-
-
-              <div className=" px-3">
-                <div className="w-full h-40 cursor-pointer flex flex-col justify-end items-end text-right  max-w-xs overflow-hidden rounded-lg shadow-md bg-gradient-to-t bg-violet-600 hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                  <h1 className="text-white font-[PoppinsBold] text-md p-8">
-                    cas des decès
-                  </h1>
-                </div>
-              </div>
-
-              <div className=" px-3">
-                <div className="w-full h-40 cursor-pointer flex flex-col justify-end items-end text-right  max-w-xs overflow-hidden rounded-lg shadow-md bg-rose-600 hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                  <h1 className="text-white font-[PoppinsBold] text-md p-8">
-                    les mariages
                   </h1>
                 </div>
               </div>
@@ -85,15 +74,6 @@ export default function DataTool() {
             </div>
           </div>
         </div>
-
-        <div>
-          <p className="text-lg mx-4">Quelques indicateurs</p>
-          <div className="grid grid-cols-2 h-96 mt-8">
-            <Chart />
-            <Chart2                                                                                                        />
-          </div>
-        </div> */}
-
 
 
       </div>

@@ -11,12 +11,17 @@ import DataTool from "./Features/Ypay/DataTool";
 import PatternLayout from "./Features/Patterns/PatternLayout";
 import Colis243 from "./Features/Colis243/Colis243";
 import ProjectLayout from "./Features/Profil/ProjectLayout";
+import Ypay from "./Features/Ypay/Ypay";
+import NewOrder from "./Features/Ypay/NewOrder";
 
 const router: any = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<Login />} />
+
       <Route path="/home" element={<Dashboard />}>
+        <Route path="orders" element={<Ypay />} />
+        <Route path="new_orders" element={<NewOrder />} />
         <Route
           path=""
           element={

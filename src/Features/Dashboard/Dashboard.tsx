@@ -33,7 +33,7 @@ export default function Dashboard() {
             location.pathname == "/dashboard/project" ? "" : "backdrop-blur-sm"
           } `}
         >
-          <div className="w-1/5 h-full bg-slate-900 shadow-lg pb-3">
+          <div className="w-[350px] h-full bg-slate-900 shadow-lg pb-3">
             <div className="w-full">
               <Link to="/home">
                 <div className="text-right text-lg flex items-center space-x-1 p-5">
@@ -72,19 +72,30 @@ export default function Dashboard() {
                 {layout == 2 && (
                   <FadeIn>
                     <div className="py-3 space-y-2 text-sm pl-10 truncate select-none">
-                      <div
-                        className={`flex text-white hover:bg-slate-800 flex-row items-center p-3 space-x-2 cursor-pointer rounded-l-3xl`}
-                      >
-                        <TbPointFilled size={20} />
-                        <span className="truncate">Mes commandes</span>
-                      </div>
-
-                      <div
-                        className={`flex text-white hover:bg-slate-800 flex-row items-center p-3 space-x-2 cursor-pointer rounded-l-3xl`}
-                      >
-                        <TbPointFilled size={20} />
-                        <span className="truncate">Nouvelle commande</span>
-                      </div>
+                      <Link to="/home/orders">
+                        <div
+                          className={`flex text-white ${
+                            location.pathname == "/home/orders"
+                              ? "text-white  bg-gradient-to-r from-green-600 via-green-600 to-green-600"
+                              : "text-slate-200 hover:text-gray-300"
+                          } hover:bg-slate-800 flex-row items-center p-3 space-x-2 cursor-pointer rounded-l-3xl`}
+                        >
+                          <TbPointFilled size={20} />
+                          <span className="truncate">Mes commandes</span>
+                        </div>
+                      </Link>
+                      <Link to="/home/new_orders">
+                        <div
+                          className={`flex ${
+                            location.pathname == "/home/new_orders"
+                              ? "text-white  bg-gradient-to-r from-green-600 via-green-600 to-green-600"
+                              : "text-slate-200 hover:text-gray-300"
+                          } text-white hover:bg-slate-800 flex-row items-center p-3 space-x-2 cursor-pointer rounded-l-3xl`}
+                        >
+                          <TbPointFilled size={20} />
+                          <span className="truncate">Nouvelle commande</span>
+                        </div>
+                      </Link>
                     </div>
                   </FadeIn>
                 )}
