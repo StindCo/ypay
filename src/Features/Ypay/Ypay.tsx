@@ -50,7 +50,7 @@ export default function Ypay() {
   const [pageLength, setPageLength] = useState<any>(10);
   const [filterText, setFilterText] = useState<any>("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [commandToShow, setCommandToShow] = useState({});
+  const [commandToShow, setCommandToShow] = useState<any>({});
   const [isModalForCommandToShowOpen, setIsModalForCommandToShowOpen] =
     useState(false);
   const [commandsFiltered, setCommandsFiltered] = useState<any>([]);

@@ -33,7 +33,7 @@ export default function Client() {
   const [pageLength, setPageLength] = useState<any>(10);
   const [filterText, setFilterText] = useState<any>("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userToShow, setUserToShow] = useState({});
+  const [userToShow, setUserToShow] = useState<any>({});
   const [isModalForUserToShowOpen, setIsModalForUserToShowOpen] =
     useState(false);
   const [clientsFiltered, setClientsFiltered] = useState<any>([]);
