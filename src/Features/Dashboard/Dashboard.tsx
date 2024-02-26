@@ -8,7 +8,11 @@ import { PatternsContext } from "./PatternsContext";
 import { FcMoneyTransfer, FcSynchronize } from "react-icons/fc";
 import { TbPointFilled, TbQuestionMark, TbTruckDelivery } from "react-icons/tb";
 import RecherchePost from "./RecherchePost";
-import { MdOutlineManageAccounts } from "react-icons/md";
+import {
+  MdAccountBox,
+  MdManageAccounts,
+  MdOutlineManageAccounts,
+} from "react-icons/md";
 import FadeIn from "react-fade-in/lib/FadeIn";
 
 type Props = {
@@ -113,29 +117,52 @@ export default function Dashboard() {
                 {layout == 3 && (
                   <FadeIn>
                     <div className="py-3 space-y-2 text-sm pl-10 truncate select-none">
-                      <div
-                        className={`flex text-white hover:bg-slate-800 flex-row items-center p-3 space-x-2 cursor-pointer rounded-l-3xl`}
-                      >
-                        <TbPointFilled size={20} />
-                        <span className="truncate">Mes colis</span>
-                      </div>
+                      <Link to="/home/colis243">
+                        <div
+                          className={`flex ${
+                            location.pathname == "/home/colis243"
+                              ? "text-white  bg-gradient-to-r from-green-600 via-green-600 to-green-600"
+                              : "text-slate-200 hover:text-gray-300"
+                          } text-white hover:bg-slate-800 flex-row items-center p-3 space-x-2 cursor-pointer rounded-l-3xl`}
+                        >
+                          <TbPointFilled size={20} />
+                          <span className="truncate">Mes colis</span>
+                        </div>
+                      </Link>
 
                       <div
-                        className={`flex text-white hover:bg-slate-800 flex-row items-center p-3 space-x-2 cursor-pointer rounded-l-3xl`}
+                        className={`flex  text-white hover:bg-slate-800 flex-row items-center p-3 space-x-2 cursor-pointer rounded-l-3xl`}
                       >
                         <TbPointFilled size={20} />
                         <span className="truncate">Mes adresses</span>
                       </div>
-
-                      <div
-                        className={`flex text-white hover:bg-slate-800 flex-row items-center p-3 space-x-2 cursor-pointer rounded-l-3xl`}
-                      >
-                        <TbPointFilled size={20} />
-                        <span className="truncate">Estimateur de prix</span>
-                      </div>
+                      <Link to="/home/new_colis">
+                        <div
+                          className={`flex ${
+                            location.pathname == "/home/new_colis"
+                              ? "text-white  bg-gradient-to-r from-green-600 via-green-600 to-green-600"
+                              : "text-slate-200 hover:text-gray-300"
+                          } text-white hover:bg-slate-800 flex-row items-center p-3 space-x-2 cursor-pointer rounded-l-3xl`}
+                        >
+                          <TbPointFilled size={20} />
+                          <span className="truncate">Estimateur de prix</span>
+                        </div>
+                      </Link>
                     </div>
                   </FadeIn>
                 )}
+
+                <Link
+                  to="/home/clients"
+                  data-tip="Page d'acceuil"
+                  className={`tooltip-right  ${
+                    location.pathname == "/home/clients"
+                      ? "text-white  bg-gradient-to-r from-green-600 via-green-600 to-green-600"
+                      : "text-slate-200 hover:text-gray-300"
+                  } ml-[1%] text-md rounded-l-[100px] p-5 pl-8 space-x-5 flex justify-start items-center`}
+                >
+                  <MdAccountBox className="text-xl" /> <span>Clients</span>
+                </Link>
 
                 <Link
                   to="/home/profil"

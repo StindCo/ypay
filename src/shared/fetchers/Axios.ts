@@ -1,39 +1,22 @@
 import axios from "axios";
+import { useSelector } from "react-redux";
 
-export const UsersManagementFetcher = axios.create({
-  baseURL: "http://localhost:8080/v1/users-management",
-  timeout: 40000,
-  // headers: {'X-Custom-Header': 'foobar'}
-});
+// let baseUrl: string = "http://127.0.0.1:8000/api";
+let baseUrl: string = "https://app.ypay-delivery.com/api";
 
-export const UsersManagementFetcherSecurity = (token: string) => {
+
+export const axiosClient = () => {
+
+  // let token = useSelector((state: any) => state.user.token)
+
+  console.log(localStorage.getItem('token'))
+
+
   return axios.create({
-    baseURL: "http://localhost:8080/v1/users-management",
+    baseURL: baseUrl,
     timeout: 40000,
-    headers: { "x-jwt-token": token },
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    }
   });
-};
-
-export const SchemaDiscover = axios.create({
-  baseURL: "http://localhost:8080/v1/schema-discover",
-  timeout: 40000,
-  // headers: {'X-Custom-Header': 'foobar'}
-});
-
-export const ProjectManager = axios.create({
-  baseURL: "http://localhost:8080/v1/project-manager",
-  timeout: 40000,
-  // headers: {'X-Custom-Header': 'foobar'}
-});
-
-export const DataLoader = axios.create({
-  baseURL: "http://localhost:8080/v1/data-loader",
-  timeout: 40000,
-  // headers: {'X-Custom-Header': 'foobar'}
-});
-
-export const Runner = axios.create({
-  baseURL: "http://localhost:3000/v1",
-  timeout: 40000,
-  // headers: {'X-Custom-Header': 'foobar'}
-});
+}

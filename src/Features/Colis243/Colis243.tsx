@@ -1,32 +1,53 @@
-import "reactflow/dist/style.css";
-import profil from "../../assets/images/profil.jpeg";
-
-
-
-import { BsPlusLg, BsStar, BsX } from "react-icons/bs";
-import { useState, useRef } from "react";
 import { AiOutlineLogout } from "react-icons/ai";
+import { BsArrowRight, BsPlusLg, BsStar } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import FadeIn from "react-fade-in/lib/FadeIn";
+import profil from "../../assets/images/profil.jpeg";
+import { useEffect, useState } from "react";
+
+type Props = {
+  propStyle: any;
+  type: string;
+};
 
 export default function Colis243() {
-  const [width, setWidth] = useState<any>(0);
-  const viewRef = useRef<any>(null);
-  const [focusView, setFocusView] = useState(2);
-  const [projetToEdit, setProjetToEdit] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState<any>(0);
+  const [numberOfPage, setNumberOfPage] = useState<any>(1);
+  const [pageLength, setPageLength] = useState<any>(10);
+  const [filterText, setFilterText] = useState<any>("");
+  const [warehousesFilter, setWarehousesFilter] = useState<any>([]);
+
+  const [warehouses, setWarehouses] = useState<any>([]);
+
+  useEffect(() => {
+    if (filterText == "") {
+      let totalPages = Math.ceil(warehouses.length / pageLength);
+      setNumberOfPage(totalPages);
+      const startIndex = currentPage * pageLength;
+      const endIndex = startIndex + pageLength;
+      const subset = warehouses.slice(startIndex, endIndex);
+      setWarehousesFilter(subset);
+    } else {
+      let value: any = warehouses.filter(
+        (fournisseur: any) =>
+          fournisseur.name.toLowerCase().includes(filterText) ||
+          fournisseur.description.toLowerCase().includes(filterText) ||
+          fournisseur.adresse.toLowerCase().includes(filterText)
+      );
+      setWarehousesFilter(value);
+    }
+  }, [warehouses, pageLength, currentPage, filterText]);
+
   return (
     <>
-     <FadeIn className="overflow-hidden">
-      {/* <div className="h-full  w-full" onClick={(e) => { }}>
-
-        <div className="w-full flex flex-row items-center justify-between mt-3 mb-16">
-          <div>
-
-            <button onClick={() => setIsModalOpen(true)} className="btn  btn-outline rounded-lg space-x-3">
-              <BsPlusLg size={15} />
-              <span>
-                Déclarer un mariage </span></button>
+      <div className="w-full">
+        <div className="w-full flex flex-row items-center justify-between mt-3 mb-10">
+          <div className="dropdown dropdown-end">
+            <div className="flex items-center space-x-3 cursor-pointer">
+              <span className="bg-slate-200 p-3 px-6 rounded-lg">
+                {" "}
+                {`EURO () -> USD ($) :  1.11`}
+              </span>
+            </div>
           </div>
           <div className="dropdown dropdown-end">
             <div
@@ -35,10 +56,7 @@ export default function Colis243() {
             >
               <span className="underline">Mon compte</span>
               <div className="border p-1 rounded-full ">
-                <img
-                  src={profil}
-                  className="w-[40px] rounded-full h-[40px]"
-                />
+                <img src={profil} className="w-[40px] rounded-full h-[40px]" />
               </div>
             </div>
             <ul
@@ -54,96 +72,97 @@ export default function Colis243() {
           </div>
         </div>
 
-        <div className="flex items-center justify-between space-x-24">
-          <div className="w-2/6 h-32 p-8 rounded-lg text-zinc-50 shadow-xl  bg-red-500">
-            <div className="text-lg flex flex-row items-center justify-between">
-              <BsPlusLg size={25} />
-              <span className="text-lg">
-                10 mariages
-              </span>
-            </div>
-            <div className="text-sm text-right mt-3">cette semaine</div>
-          </div>
-
-          <div className="w-2/6 h-32 p-8 rounded-lg text-zinc-50 shadow-xl  bg-yellow-500">
-            <div className="text-lg flex flex-row items-center justify-between">
-              <BsPlusLg size={25} />
-              <span className="text-lg">
-                40 mariages
-              </span>
-            </div>
-            <div className="text-sm text-right mt-3">avec contentieux</div>
-          </div>
-          <div className="w-2/6 h-32 p-8 rounded-lg text-zinc-50 shadow-xl  bg-cyan-500">
-            <div className="text-lg flex flex-row items-center justify-between">
-              <BsPlusLg size={25} />
-              <span className="text-lg">
-                70 mariages
-              </span>
-            </div>
-            <div className="text-xs text-right mt-3">par rapport à la semaine dernière</div>
-          </div>
-          <div className="w-2/6 h-32 p-8 rounded-lg text-zinc-50 shadow-xl  bg-green-600">
-            <div className="text-lg flex flex-row items-center justify-between">
-              <BsPlusLg size={25} />
-              <span className="text-lg">
-                18 divorces
-              </span>
-            </div>
-            <div className="text-sm text-right mt-3">déclarés</div>
-          </div>
-
+        <div className="w-full flex items-center pl-1 justify-between">
+          <div className="text-2xl font-[PoppinsBold]">Mes colis</div>
         </div>
 
-        <div className="overflow-x-auto mt-14">
-          <table className="table w-full">
+        <div className="w-full flex flex-row my-8 items-center justify-between">
+          <div className="flex items-center w-3/5  space-x-4">
+            <select
+              onChange={(e) => setPageLength(parseInt(e.target.value))}
+              className="select select-sm"
+            >
+              <option value="10">10</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+              <option value="500">500</option>
+            </select>
+            <div className="w-full">
+              <input
+                onChange={(e) => setFilterText(e.target.value)}
+                type="text"
+                placeholder="Rechercher un colis"
+                className="input input-bordered w-full"
+              />
+            </div>
+          </div>
+          <div className="join rounded-lg space-x-2">
+            {Array(numberOfPage)
+              .fill(0)
+              .map((_, index: number) => (
+                <button
+                  key={Math.random()}
+                  onClick={() => setCurrentPage(index)}
+                  className={`join-item rounded-lg px-5 btn ${
+                    currentPage != index && "btn-outline"
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              ))}
+          </div>
+          <div>
+            <Link to="/home/new_colis" className="px-6 py-3 bg-green-500 rounded-lg text-white hover:bg-green-700 flex items-center space-x-3">
+              <BsPlusLg size={15} />
+              <span>Ajouter un colis </span>
+            </Link>
+          </div>
+        </div>
+        <div className="overflow-hidden h-[300px] overflow-y-scroll">
+          <table className="table table-zebra w-full ">
             <thead>
               <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Job</th>
-                <th>Favorite Color</th>
+                <th>#</th>
+                <th>Numéro du colis </th>
+                <th>Date</th>
+                <th>Statut</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>Blue</td>
-              </tr>
-              <tr>
-                <th>2</th>
-                <td>Hart Hagerty</td>
-                <td>Desktop Support Technician</td>
-                <td>Purple</td>
-              </tr>
-              <tr>
-                <th>3</th>
-                <td>Brice Swyre</td>
-                <td>Tax Accountant</td>
-                <td>Red</td>
-              </tr>
+              {warehousesFilter.map((value: any, index: number) => (
+                <tr key={Math.random()}>
+                  <th>{index + 1}</th>
+                  <th className="underline cursor-pointer select-none font-[PoppinsBold] ">
+                    <Link
+                      to={
+                        "/dashboard/products-manager/warehouses/" +
+                        value?.idTech
+                      }
+                    >
+                      {" "}
+                      {value?.name}{" "}
+                    </Link>
+                  </th>
+                  <th>{value?.description}</th>
+                  <th>{value?.adresse}</th>
+                  <th>{value?.responsable?.fullname}</th>
+                  <th>0</th>
+                  <th>0 $</th>
+                  <th>
+                    <a
+                      onClick={() => {}}
+                      className=" cursor-pointer text-xs text-red-600 underline"
+                    >
+                      Supprimer
+                    </a>
+                  </th>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
-
-      </div> */}
-     </FadeIn>
-      <dialog className={`w-full  h-full modal ${isModalOpen ? "modal-open" : ""}`}>
-        <div className="bg-zinc-50 px-6 pt-2 text-lg rounded-lg w-2/4">
-          <div className="flex flex-row border-b py-3  px-2 items-center justify-between">
-            <h2>Enregistrement d'un mariage</h2>
-            <button onClick={() => setIsModalOpen(false)} className="btn rounded-full btn-sm btn-error text-white">
-              <BsX size={20} />
-            </button>
-          </div>
-          <div className="h-64">
-
-          </div>
-        </div>
-      </dialog>
+      </div>
     </>
   );
-
 }

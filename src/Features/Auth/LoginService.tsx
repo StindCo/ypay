@@ -1,31 +1,61 @@
 import { useDispatch } from "react-redux";
-import { UsersManagementFetcher } from "../../shared/fetchers/Axios";
 import { loginUser } from "../../shared/reducers/login";
+import { axiosClient } from "../../shared/fetchers/Axios";
+import axios from "axios";
+
 
 export const LoginService: any = {};
 
-LoginService.login = async (username: string, password: string) => {
 
+LoginService.login = async (username: string, password: string) => {
   try {
-    let response: any = await UsersManagementFetcher.post("/auths", {
-      username,
+    let response: any = await axiosClient().post("/login", {
+      email: username,
       password,
     });
 
-    localStorage.setItem("token", response?.headers.get("x-jwt-token"));
+    let data:any = response.data;
 
-
-    return { data: response?.data, message: "ok" };
+    return { data , message: "ok" };
   } catch (err: any) {
+    let message:string = "";
     if (err?.response?.data?.message == "username-error")
-      return "Il n'existe aucun compte avec cet identifiant.";
+      message  = "Il n'existe aucun compte avec cet identifiant.";
     if (err?.response?.data?.message == "password-error")
-      return "Le mot de passe saisi est incorrect.";
+      message  = "Le mot de passe saisi est incorrect.";
     if (err?.code == "ERR_NETWORK")
-      return "Erreur système";
+      message  = "Une erreur interne est survenue, veillez recommencer";
+
+      throw new Error(message);
   }
 
-  let token = await localStorage.get("token");
+  // let token = await localStorage.get("token");
+};
+
+LoginService.register = async (username: string, password: string, fullname:string) => {
+  try {
+    let response: any = await axiosClient().post("/register", {
+      email: username,
+      password,
+      name: fullname
+    });
+
+    let data:any = response.data;
+
+    return { data , message: "ok" };
+  } catch (err: any) {
+    let message:string = "";
+    if (err?.response?.data?.message == "username-error")
+      message  = "Il n'existe aucun compte avec cet identifiant.";
+    if (err?.response?.data?.message == "password-error")
+      message  = "Le mot de passe saisi est incorrect.";
+    if (err?.code == "ERR_NETWORK")
+      message  = "Une erreur interne est survenue, veillez recommencer";
+
+      throw new Error(message);
+  }
+
+  // let token = await localStorage.get("token");
 };
 
 LoginService.updatePassword = function (
@@ -35,3 +65,5 @@ LoginService.updatePassword = function (
 ) {};
 
 LoginService.logout = function () {};
+
+
