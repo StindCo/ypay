@@ -2,7 +2,6 @@ import React from "react";
 import { themeChange } from "theme-change";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { changeTheme } from "../../reducers/theme";
 import { BsFillMoonFill, BsSunFill } from "react-icons/bs";
 
 type Props = {};
@@ -14,7 +13,7 @@ export default function ThemeComponent({}: Props) {
 
   const toggleTheme = () => {};
   React.useEffect(() => {
-    dispatch(changeTheme({}));
+    // dispatch(changeTheme({}));
   }, [clicked]);
 
   return (
