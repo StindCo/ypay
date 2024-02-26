@@ -14,7 +14,7 @@ export default function NewColis() {
   const [numberOfPage, setNumberOfPage] = useState<any>(1);
   const [pageLength, setPageLength] = useState<any>(10);
   const [filterText, setFilterText] = useState<any>("");
-  const [isModalOpen setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const [warehousesFilter, setWarehousesFilter] = useState<any>([]);
 
   const [warehouses, setWarehouses] = useState<any>([]);

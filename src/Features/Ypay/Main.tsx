@@ -49,7 +49,7 @@ export default function Main() {
 
   const [orders, setOrders] = useState<any>([]);
 
-  useEffect(() => {
+    useEffect(() => {
     let clientsWithFilter: any =
       typeOfUser == "all"
         ? orders

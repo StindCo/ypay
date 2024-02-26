@@ -14,7 +14,6 @@ type Props = {
   type: string;
 };
 
-
 const typesOfUser = [
   {
     label: "All",
@@ -241,7 +240,6 @@ export default function Ypay() {
                       >
                         Voir
                       </span>
-
                     </div>
                   </th>
                 </tr>
